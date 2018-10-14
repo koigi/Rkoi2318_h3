@@ -1,6 +1,5 @@
 package comp5216.sydney.edu.au.rkoi2318_h3;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.icu.text.RelativeDateTimeFormatter;
@@ -74,17 +73,17 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    protected void LaunchPaceCaclulator(View view){
+    public void LaunchPaceCaclulator(View view){
         Log.d(LOG_TAG,"You've clicked on the Lauch Pace button");
         Intent anIntent = new Intent(this, PaceCalculator.class);
         this.startActivity(anIntent);
     }
 
-    protected void LaunchRunningLog(View view){
+    public void LaunchRunningLog(View view){
         Log.d(LOG_TAG,"You've clicked on the Lauch Running Log Button");
     }
 
-    protected void LaunchMusicPlayer(View view){
+    public void LaunchMusicPlayer(View view){
         Log.d(LOG_TAG,"Launch Music Player button");
     }
 
@@ -114,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private Date getRandomEventDate(Boolean starting){
         int minuteEntry;

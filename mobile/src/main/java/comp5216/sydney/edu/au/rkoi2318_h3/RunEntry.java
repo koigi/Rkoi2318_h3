@@ -47,9 +47,23 @@ public class RunEntry {
 
     protected String getRunId(){return this.runId;}
 
-    protected float getPace(){return this.pace;}
+    protected float getPace(){
+        if(0 == this.distance || 0 == this.duration){
+            return 0;
+        }else{
+            this.calculatePace();
+            return this.pace;
+        }
+    }
 
-    protected float getSpeed(){return this.speed;}
+    protected float getSpeed(){
+        if(0 == this.distance || 0 == this.duration){
+            return 0;
+        }else{
+            this.calculateSpeed();
+            return this.speed;
+        }
+    }
 
     protected Date getStartTime() {
         return this.startTime;

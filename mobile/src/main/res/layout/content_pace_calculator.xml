@@ -8,81 +8,98 @@
     tools:context=".PaceCalculator"
     tools:showIn="@layout/activity_pace_calculator">
 
-    <!-- Have a look at the layout_constraintTop_toTopOf value of the thing here it could mess me up-->
+
     <TextView
         android:id="@+id/distanceTextLabel"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:contextClickable="false"
         android:hapticFeedbackEnabled="false"
         android:text="Distance (meters)"
         android:textStyle="bold"
-
-
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="55dp" />
 
     <EditText
         android:id="@+id/distanceInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="distance in meters"
-        app:layout_constraintLeft_toRightOf="@id/distanceTextLabel"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/durationInput"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp"
 
-        />
+
+        android:hint="distance in meters"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/durationTextLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+
+
+        android:layout_marginTop="20dp"
         android:text="Duration (seconds)"
         android:textAlignment="textStart"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceTextLabel"
-        app:layout_constraintRight_toLeftOf="@+id/durationInput"
-        app:layout_constraintBottom_toTopOf="@+id/paceResultsText"
-
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceTextLabel" />
 
     <EditText
         android:id="@+id/durationInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintLeft_toRightOf="@+id/durationTextLabel"
-        app:layout_constraintTop_toBottomOf="@+id/distanceInput"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/paceResultsText"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
 
-        />
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="20dp"
+        android:hint="duration in seconds"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceInput" />
 
     <TextView
         android:id="@+id/paceResultsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="330dp"
+        android:layout_height="250dp"
 
-        />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/durationTextLabel" />
 
     <Button
         android:id="@+id/btnBackToMain"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Back"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="goBackToMain"
-        />
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paceResultsText" />
 
     <Button
         android:id="@+id/recalculateStats"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Calculate"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="updateViewCalculations"
+        android:text="Calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paceResultsText" />
 
-        />
 
 </android.support.constraint.ConstraintLayout>
