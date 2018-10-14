@@ -8,4 +8,116 @@
     tools:context=".PaceCalculator"
     tools:showIn="@layout/activity_pace_calculator">
 
+    <!-- Have a look at the layout_constraintTop_toTopOf value of the thing here it could mess me up-->
+    <TextView
+        android:id="@+id/distanceTextLabel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contextClickable="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="Distance (meters)"
+        android:textStyle="bold"
+        app:layout_marginLeftPercent="@dimen/PERCENT_10"
+        app:layout_marginRightPercent="@dimen/PERCENT_5"
+        app:layout_marginBottomPercent="@dimen/PERCENT_5"
+        app:layout_marginTopPercent="@dimen/PERCENT_5"
+        app:layout_constraintWidth_max="@dimen/PERCENT_35"
+        app:layout_constraintWidth_min="@dimen/PERCENT_35"
+        app:layout_constraintHeight_max="@dimen/PERCENT_10"
+        app:layout_constraintHeight_min="@dimen/PERCENT_10"
+
+        />
+
+    <EditText
+        android:id="@+id/distanceInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="distance in meters"
+        app:layout_constraintLeft_toRightOf="@id/distanceTextLabel"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/durationInput"
+        app:layout_marginLeftPercent="@dimen/PERCENT_5"
+        app:layout_marginRightPercent="@dimen/PERCENT_10"
+        app:layout_marginBottomPercent="@dimen/PERCENT_5"
+        app:layout_marginTopPercent="@dimen/PERCENT_5"
+        app:layout_constraintWidth_max="@dimen/PERCENT_35"
+        app:layout_constraintWidth_min="@dimen/PERCENT_35"
+        app:layout_constraintHeight_max="@dimen/PERCENT_10"
+        app:layout_constraintHeight_min="@dimen/PERCENT_10"
+        />
+
+
+    <TextView
+        android:id="@+id/durationTextLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration (seconds)"
+        android:textAlignment="textStart"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceTextLabel"
+        app:layout_constraintRight_toLeftOf="@+id/durationInput"
+        app:layout_constraintBottom_toTopOf="@+id/paceResultsText"
+        app:layout_marginLeftPercent="@dimen/PERCENT_10"
+        app:layout_marginRightPercent="@dimen/PERCENT_5"
+        app:layout_marginBottomPercent="@dimen/PERCENT_5"
+        app:layout_marginTopPercent="@dimen/PERCENT_5"
+        app:layout_constraintWidth_max="@dimen/PERCENT_35"
+        app:layout_constraintWidth_min="@dimen/PERCENT_35"
+        app:layout_constraintHeight_max="@dimen/PERCENT_10"
+        app:layout_constraintHeight_min="@dimen/PERCENT_10"
+        />
+
+    <EditText
+        android:id="@+id/durationInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="@+id/durationTextLabel"
+        app:layout_constraintTop_toBottomOf="@+id/distanceInput"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/paceResultsText"
+        app:layout_marginLeftPercent="@dimen/PERCENT_5"
+        app:layout_marginRightPercent="@dimen/PERCENT_10"
+        app:layout_marginBottomPercent="@dimen/PERCENT_5"
+        app:layout_marginTopPercent="@dimen/PERCENT_5"
+        app:layout_constraintWidth_max="@dimen/PERCENT_35"
+        app:layout_constraintWidth_min="@dimen/PERCENT_35"
+        app:layout_constraintHeight_max="@dimen/PERCENT_10"
+        app:layout_constraintHeight_min="@dimen/PERCENT_10"
+        />
+
+    <TextView
+        android:id="@+id/paceResultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginLeftPercent="@dimen/PERCENT_10"
+        app:layout_marginRightPercent="@dimen/PERCENT_10"
+        app:layout_marginBottomPercent="@dimen/PERCENT_5"
+        app:layout_marginTopPercent="@dimen/PERCENT_5"
+        app:layout_constraintWidth_max="@dimen/PERCENT_80"
+        app:layout_constraintWidth_min="@dimen/PERCENT_80"
+        app:layout_constraintHeight_max="@dimen/PERCENT_30"
+        app:layout_constraintHeight_min="@dimen/PERCENT_30"
+        />
+
+    <Button
+        android:id="@+id/btnBackToMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Back"
+        android:onClick="goBackToMain"
+        />
+
+    <Button
+        android:id="@+id/recalculateStats"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Calculate"
+        android:onClick="updateViewCalculations"
+
+        />
+
 </android.support.constraint.ConstraintLayout>

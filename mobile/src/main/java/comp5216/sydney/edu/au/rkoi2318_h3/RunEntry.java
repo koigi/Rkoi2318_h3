@@ -5,28 +5,47 @@ import android.text.format.DateFormat;
 
 
 import java.util.Date;
+import java.util.UUID;
+
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity
+@Entity(tableName = "RunEntry")
 public class RunEntry {
 
     @PrimaryKey
     @NonNull
-    private int runId;
+    private String runId;
 
     protected int distance, duration;
     private float pace, speed;
     protected Date startTime, endTime;
 
     public RunEntry(){
+        this.runId = UUID.randomUUID().toString();
         this.startTime = new Date();
     }
+    public RunEntry(Date start, Date end, int distance){
+        this.runId = UUID.randomUUID().toString();
+        this.startTime = start;
+        this.endTime = end;
+        this.distance = distance;
+        calculateDuration();
+        calculatePace();
+        calculateSpeed();
 
+    }
+
+    //Why you would have a null run ID I don't know but needed a setter so here you are.
+    protected void setRunId(String runId){
+        if (this.runId == null) this.runId = UUID.randomUUID().toString();
+    }
     protected int getDistance() {
         return this.distance;
     }
+
+    protected String getRunId(){return this.runId;}
 
     protected float getPace(){return this.pace;}
 
@@ -44,6 +63,10 @@ public class RunEntry {
         this.distance = distance;
     }
 
+    protected void setSpeed(float speed){this.calculateSpeed();}
+
+    protected void setPace(float pace){this.calculatePace();}
+
     protected void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
@@ -52,8 +75,10 @@ public class RunEntry {
         this.endTime = endTime;
     }
 
-    //Returns the duration of a run in seconds
-    protected boolean calculateDuration(){
+
+
+    //Returns the duration of a run in seconds when th start time is set.
+    private boolean calculateDuration(){
 
         Date tempTime = null;
         boolean successfulCalc = false;
@@ -72,12 +97,12 @@ public class RunEntry {
 
     //Speed is defined as the amount of time it takes to cover a certain distance
     // This function will set the speed to
-    protected boolean calculateSpeed(){
+    private boolean calculateSpeed(){
         boolean successfulCalc = false;
         if ((this.duration <= 0) || (this.distance <= 0)){
             this.speed = 0;
         }else {
-            this.pace = this.distance / this.duration;
+            this.speed = (float)this.distance / (float)this.duration;
             successfulCalc = true;
         }
         return successfulCalc;
@@ -85,13 +110,15 @@ public class RunEntry {
 
     //TODO
     // Pace is defined here as the distance covered in a certain amount of time.
-    // This function will return pace as seconds per meter.
-    protected boolean calculatePace(){
+    // This function will return pace as Minutes per kilometer.
+    private boolean calculatePace(){
         boolean successfulCalc = false;
         if ((this.duration <= 0) || (this.distance <= 0)){
             this.pace = 0;
         }else {
-            this.pace = this.duration / this.distance;
+            float durationMinutes = this.duration/60;
+            float distanceKilometers = this.distance / 1000;
+            this.pace = durationMinutes / distanceKilometers;
             successfulCalc = true;
         }
         return successfulCalc;
