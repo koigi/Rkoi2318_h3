@@ -139,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
         logLine += "\n This is the End time " + a.getEndTime().toString();
         logLine += "\n This is the Duration " + Integer.toString(a.duration);
         logLine += "\n This is the Distance Covered in Meters " + Integer.toString(a.getDistance());
-        logLine += "\n This is the pace measured in Minutes per Kilometer " + Float.toString(a.getPace());
-        logLine += "\n This is the Speed Measured in Meters per second " + Float.toString(a.getSpeed());
+        logLine += "\n This is the pace measured in Minutes per Kilometer " + RunEntry.formatToString(a.getPace());
+        logLine += "\n This is the Speed Measured in Meters per second " + RunEntry.formatToString(a.getSpeed());
 
         return  logLine;
     }

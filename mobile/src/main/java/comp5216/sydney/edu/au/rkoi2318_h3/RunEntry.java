@@ -3,7 +3,8 @@ package comp5216.sydney.edu.au.rkoi2318_h3;
 import android.text.format.DateFormat;
 
 
-
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public class RunEntry {
     private String runId;
 
     protected int distance, duration;
-    private float pace, speed;
+    private double pace, speed;
     protected Date startTime, endTime;
 
     public RunEntry(){
@@ -47,7 +48,7 @@ public class RunEntry {
 
     protected String getRunId(){return this.runId;}
 
-    protected float getPace(){
+    protected double getPace(){
         if(0 == this.distance || 0 == this.duration){
             return 0;
         }else{
@@ -56,7 +57,7 @@ public class RunEntry {
         }
     }
 
-    protected float getSpeed(){
+    protected double getSpeed(){
         if(0 == this.distance || 0 == this.duration){
             return 0;
         }else{
@@ -77,9 +78,9 @@ public class RunEntry {
         this.distance = distance;
     }
 
-    protected void setSpeed(float speed){this.calculateSpeed();}
+    protected void setSpeed(double speed){this.calculateSpeed();}
 
-    protected void setPace(float pace){this.calculatePace();}
+    protected void setPace(double pace){this.calculatePace();}
 
     protected void setStartTime(Date startTime) {
         this.startTime = startTime;
@@ -89,6 +90,16 @@ public class RunEntry {
         this.endTime = endTime;
     }
 
+    protected void setDuration (int aDuration){
+        if (aDuration > 0 ){
+            this.duration = aDuration;
+        }else{
+            this.calculateDuration();
+        }
+    }
+    protected void setDuration (){
+        this.calculateDuration();
+    }
 
 
     //Returns the duration of a run in seconds when th start time is set.
@@ -130,12 +141,18 @@ public class RunEntry {
         if ((this.duration <= 0) || (this.distance <= 0)){
             this.pace = 0;
         }else {
-            float durationMinutes = this.duration/60;
-            float distanceKilometers = this.distance / 1000;
+            double durationMinutes = this.duration/60;
+            double distanceKilometers = this.distance / 1000;
             this.pace = durationMinutes / distanceKilometers;
             successfulCalc = true;
         }
         return successfulCalc;
+    }
+
+    public static String formatToString(Double aNumber){
+        NumberFormat nf = new DecimalFormat("#0.000");
+        return nf.format(aNumber);
+
     }
 
 
