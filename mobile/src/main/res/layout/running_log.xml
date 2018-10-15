@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RunningLog">
+    tools:context=".RunningLog"
+    >
 
     <Button
         android:id="@+id/runningLogBackToMain"
@@ -38,6 +39,7 @@
         android:layout_height="474dp"
         android:clickable="false"
         android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         android:paddingTop="20dp"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -46,5 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 </android.support.constraint.ConstraintLayout>

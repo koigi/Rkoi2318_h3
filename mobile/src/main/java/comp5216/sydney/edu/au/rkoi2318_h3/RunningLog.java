@@ -1,20 +1,26 @@
 package comp5216.sydney.edu.au.rkoi2318_h3;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import android.view.View;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class RunningLog extends AppCompatActivity {
-    protected ArrayAdapter<RunEntry> runsAdapter;
+    protected RunAdapter runsAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +34,7 @@ public class RunningLog extends AppCompatActivity {
         if(allRuns.isEmpty()){
             Log.d("RUNNING_LOG", "all runnis empty :(");
         }else{
-            runsAdapter = new ArrayAdapter<RunEntry>(this,android.R.layout.simple_list_item_1, allRuns);
+            runsAdapter = new RunAdapter(this);
             runList.setAdapter(runsAdapter);
         }
     }
@@ -38,19 +44,30 @@ public class RunningLog extends AppCompatActivity {
     }
 
     protected class RunAdapter extends BaseAdapter{
+        public String[] runViewRow = new String[2];
+        public Context aContext;
+
+        public RunAdapter(Context myContext){
+            this.aContext = myContext;
+        }
+
         @Override
-        public String getItem(int position) {
-            //TODO Convert the Run Entry into a String
+        public String[] getItem(int position) {
+
             RunEntry aRun = MainActivity.totalRuns.get(position);
-            String pageLog = "Start Date:";
-            return pageLog;
+            this.runViewRow[0] = "Start Date:"+ aRun.getStartTime().toString();
+            this.runViewRow[1] = "Distance: "+Integer.toString(aRun.getDistance())+
+                    "(m)\nDuration: "+ Integer.toString(aRun.duration)+
+                    "(s)\nPace: "+ RunEntry.formatToString(aRun.getPace()) +
+                    "(Min/Km)\n Speed:"+ RunEntry.formatToString(aRun.getSpeed()) +"(m/s)";
+
+            return this.runViewRow;
         }
 
         @Override
         public int getCount() {
             return MainActivity.totalRuns.size();
         }
-
         //We're not using normal IDs for the runs so no need to have this in there.
         @Override
         public long  getItemId(int position) {
@@ -59,10 +76,17 @@ public class RunningLog extends AppCompatActivity {
 
         public View getView(int position, View convertView, ViewGroup container){
             if (convertView == null) {
-                convertView = getLayoutInflater().inflate(android.R.layout.simple_list_item_1, container, false);
+                //convertView = getLayoutInflater().inflate(R.layout.run_entry_item, container, false);
+                convertView = LayoutInflater.from(aContext).inflate(R.layout.run_entry_item, container, false);
             }
-            ((TextView) convertView.findViewById(android.R.id.text1)).setText(this.getItem(position));
+            TextView runDateTV = convertView.findViewById(R.id.runDate);
+            runDateTV.setText(this.getItem(position)[0]);
+
+            TextView statsViewTV = convertView.findViewById(R.id.statsRow);
+            statsViewTV.setText(this.getItem(position)[1]);
+
             return convertView;
         }
     }
+
 }
