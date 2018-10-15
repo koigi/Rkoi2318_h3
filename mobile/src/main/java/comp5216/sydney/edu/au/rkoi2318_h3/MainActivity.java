@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void LaunchMusicPlayer(View view){
         Log.d(LOG_TAG,"Launch Music Player button");
+        Intent anIntent = new Intent(this, MusicPlayer.class);
+        this.startActivity(anIntent);
     }
 
     public void LaunchPedometer(View view){
