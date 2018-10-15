@@ -1,6 +1,7 @@
 package comp5216.sydney.edu.au.rkoi2318_h3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,18 @@ public class RunningLog extends AppCompatActivity {
         updateListOfRuns();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.updateListOfRuns();
+    }
+
+    @Override
+    public void onWindowFocusChanged (boolean hasFocus){
+        super.onWindowFocusChanged(true);
+        if(hasFocus)this.updateListOfRuns();
+    }
+
     private void updateListOfRuns(){
         List<RunEntry> allRuns = MainActivity.totalRuns;
         ListView runList = (ListView) findViewById(R.id.TotalRunsListView);
@@ -41,6 +54,12 @@ public class RunningLog extends AppCompatActivity {
 
     public void goBackToMain(View v){
         this.finish();
+    }
+
+    public void createNewRun(View v){
+        Log.d("RUNNING_LOG","You've clicked on the Create Run");
+        Intent anIntent = new Intent(this, NewManualRun.class);
+        this.startActivity(anIntent);
     }
 
     protected class RunAdapter extends BaseAdapter{

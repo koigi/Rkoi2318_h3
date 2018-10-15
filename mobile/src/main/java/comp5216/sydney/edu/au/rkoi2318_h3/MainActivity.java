@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     appDB.runDao().insertRun(aRunEntry);
-                    Log.d(LOG_TAG, "I've entered into the DB yay!");
+                    Log.d(LOG_TAG, "Sample Data Entered into Database");
                 }
             }).start();
 
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     private String returnLogLine(RunEntry a){
         String  logLine = "This is the Run ID " + a.getRunId();
         logLine += "\n This is the Start time " + a.getStartTime().toString();
-        logLine += "\n This is the End time " + a.getEndTime().toString();
+        //logLine += "\n This is the End time " + a.getEndTime().toString(); Leaving this out as it may not always be set
         logLine += "\n This is the Duration " + Integer.toString(a.duration);
         logLine += "\n This is the Distance Covered in Meters " + Integer.toString(a.getDistance());
         logLine += "\n This is the pace measured in Minutes per Kilometer " + RunEntry.formatToString(a.getPace());

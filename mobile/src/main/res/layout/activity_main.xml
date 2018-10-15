@@ -21,57 +21,72 @@
             />
     </TableRow>
     <!--Pace calculator button-->
-    <TableRow>
+    <TableRow android:layout_width="fill_parent"
+        android:padding="@dimen/activity_horizontal_margin">
 
         <Button
             android:id="@+id/btnPaceCalc"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:layout_column="1"
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
             android:onClick="LaunchPaceCaclulator"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:text="Launch Pace Calculator" />
+            android:text="Launch Pace Calculator"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent" />
     </TableRow>
     <!--Running Log Button-->
-    <TableRow>
+    <TableRow android:layout_width="fill_parent"
+        android:padding="@dimen/activity_horizontal_margin">
+
         <Button
             android:id="@+id/btnRunninLog"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:layout_column="1"
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
             android:onClick="LaunchRunningLog"
             android:text="View Running Log"
-            />
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </TableRow>
 
     <!--Launch a Music player-->
-    <TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:padding="@dimen/activity_horizontal_margin">
+
         <Button
             android:id="@+id/btnMusicPlayer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:onClick="LaunchMusicPlayer"
             android:layout_column="1"
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
+            android:onClick="LaunchMusicPlayer"
             android:text="Launch Music Player"
-            />
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </TableRow>
 
     <!--Launch a Mobile Pedometer player-->
-    <TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:padding="@dimen/activity_horizontal_margin">
+
         <Button
             android:id="@+id/btnPedometer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:layout_column="1"
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
             android:onClick="LaunchPedometer"
             android:text="Launch Mobile Pedometer"
-            />
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </TableRow>
 </TableLayout>

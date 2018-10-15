@@ -23,7 +23,7 @@
             android:label="@string/title_activity_pace_calculator"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RunningLog" />
-        <activity android:name=".New_manual_run"></activity>
+        <activity android:name=".NewManualRun"></activity>
     </application>
 
 </manifest>

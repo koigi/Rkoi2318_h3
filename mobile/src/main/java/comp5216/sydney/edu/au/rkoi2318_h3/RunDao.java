@@ -13,7 +13,7 @@ public interface RunDao {
     @Insert
     void insertRun(RunEntry runEntry);
 
-    @Query("SELECT * FROM RunEntry")
+    @Query("SELECT * FROM RunEntry ORDER BY startTime desc")
     List<RunEntry> fetchAllRunEntries();
 
     @Query("SELECT * FROM RunEntry where runId = :uuid")

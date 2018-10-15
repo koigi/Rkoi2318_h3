@@ -7,7 +7,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.UUID;
-
+import java.util.Calendar;
+import java.util.TimeZone;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -42,6 +43,7 @@ public class RunEntry {
     protected void setRunId(String runId){
         if (this.runId == null) this.runId = UUID.randomUUID().toString();
     }
+
     protected int getDistance() {
         return this.distance;
     }
@@ -71,7 +73,18 @@ public class RunEntry {
     }
 
     protected Date getEndTime() {
-        return this.endTime;
+        Calendar cal = Calendar.getInstance();;
+        if(this.endTime == null && this.duration > 0 && null != this.startTime){
+            //Calculate the end time
+            TimeZone tz = TimeZone.getTimeZone("Australia/Sydney");
+            cal.setTime(this.startTime);
+            cal.add(Calendar.SECOND, this.duration);
+            return cal.getTime();
+        }else{
+            return this.endTime;
+        }
+
+
     }
 
     protected void setDistance(int distance) {
@@ -97,6 +110,7 @@ public class RunEntry {
             this.calculateDuration();
         }
     }
+
     protected void setDuration (){
         this.calculateDuration();
     }
@@ -141,8 +155,8 @@ public class RunEntry {
         if ((this.duration <= 0) || (this.distance <= 0)){
             this.pace = 0;
         }else {
-            double durationMinutes = this.duration/60;
-            double distanceKilometers = this.distance / 1000;
+            double durationMinutes = (double) this.duration/60;
+            double distanceKilometers = (double) this.distance / 1000;
             this.pace = durationMinutes / distanceKilometers;
             successfulCalc = true;
         }

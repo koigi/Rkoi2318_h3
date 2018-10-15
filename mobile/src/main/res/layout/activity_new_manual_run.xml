@@ -1,9 +1,103 @@
-s<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".New_manual_run">
+    tools:context=".NewManualRun">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/runStartDate"
+        android:layout_marginTop="50dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SELECT DATE"
+        android:id="@+id/btnRunStartDate"
+        android:layout_marginLeft="30dp"
+        android:onClick="onClick"
+        android:layout_alignBottom="@+id/runStartDate"
+        android:layout_toRightOf="@+id/runStartDate"
+        android:layout_toEndOf="@+id/runStartDate" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/runStartTime"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_below="@+id/runStartDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SELECT TIME"
+        android:id="@+id/btnRunStartTime"
+        android:onClick="onClick"
+        android:layout_below="@+id/btnRunStartDate"
+        android:layout_alignLeft="@+id/btnRunStartDate"
+        android:layout_alignStart="@+id/btnRunStartDate" />
+
+    <EditText
+        android:id="@+id/manualDuration"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="154dp"
+        android:hint="Duration in seconds"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/manualDistance"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="213dp"
+        android:hint="Distance in meters"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnSaveEntry"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnCancel"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/colorPrimary"
+        android:onClick="btnSaveEntry"
+        android:text="New Run"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:onClick="goBackToMain"
+        android:text="Back"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+</RelativeLayout>
