@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private final static String LOG_TAG = "MOBILE_MAINACTIVITY";
 
     protected AsyncTask<Void, Void, List<RunEntry>> totalRunsTask;
-    protected List<RunEntry> totalRuns;
+    protected static List<RunEntry> totalRuns;
     protected AppDB appDB;
 
-    private class RunDBTask extends AsyncTask<Void, Void, List<RunEntry>>{
+    protected class RunDBTask extends AsyncTask<Void, Void, List<RunEntry>>{
         @Override
         protected List<RunEntry> doInBackground(Void... voids) {
             List<RunEntry> response;
@@ -36,6 +36,22 @@ public class MainActivity extends AppCompatActivity {
             response=  appDB.runDao().fetchAllRunEntries();
             Log.i("THREAD_LOG","This is the size of the all entries fetched" + Integer.toString(response.size()) );
             return  response;
+        }
+
+        protected List<RunEntry>  doInBackground(String ... params){
+            List<RunEntry> response = null;
+            Log.i("THREAD_LOG", "This is the string that I got passed in"+ params[0]);
+            if("fetchAllRunEntries".equalsIgnoreCase(params[0])){
+                //Call Fetch all Run Entries
+                response=  appDB.runDao().fetchAllRunEntries();
+            }else if("getRunEntryByID".equalsIgnoreCase(params[0])){
+                response=  appDB.runDao().getRunEntryByID(params[1]);
+            }else{
+                response.add(new RunEntry());
+            }
+
+            return response;
+
         }
 
         @Override
@@ -50,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         appDB = AppDB.getDatabase(this.getApplicationContext());
         //Database already has sample information in it.
-        //populateDBSample();
+        populateDBSample();
         RunDBTask aTask =new RunDBTask();
         this.totalRunsTask = aTask.execute();
-        this.totalRuns = new RunDBTask().doInBackground();
+        this.totalRuns = new RunDBTask().doInBackground("fetchAllRunEntries");
         Log.i("DB_LOG","THINGS IN DB BELOW HEHE");
 
         if(null == totalRuns){
@@ -81,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void LaunchRunningLog(View view){
         Log.d(LOG_TAG,"You've clicked on the Lauch Running Log Button");
+        Intent anIntent = new Intent(this, RunningLog.class);
+        this.startActivity(anIntent);
     }
 
     public void LaunchMusicPlayer(View view){
@@ -127,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         TimeZone tz = TimeZone.getTimeZone("Australia/Sydney");
         Calendar calReturn = Calendar.getInstance(tz);
 
-        calReturn.set(2018, 8, 13, 12, minuteEntry,secondEntry );
+        calReturn.set(2018, 8, 23, 12, minuteEntry,secondEntry );
         Date start = calReturn.getTime();
         //Log.d(LOG_TAG, "This is the date that I've created " + start.toString());
         return start;

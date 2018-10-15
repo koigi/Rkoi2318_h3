@@ -29,8 +29,6 @@
         android:layout_height="50dp"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="4dp"
-
-
         android:hint="distance in meters"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +40,6 @@
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
-
-
         android:layout_marginTop="20dp"
         android:text="Duration (seconds)"
         android:textAlignment="textStart"

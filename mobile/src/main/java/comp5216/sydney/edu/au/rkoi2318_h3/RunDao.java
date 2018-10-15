@@ -16,4 +16,7 @@ public interface RunDao {
     @Query("SELECT * FROM RunEntry")
     List<RunEntry> fetchAllRunEntries();
 
+    @Query("SELECT * FROM RunEntry where runId = :uuid")
+    List<RunEntry> getRunEntryByID(String uuid);
+
 }
